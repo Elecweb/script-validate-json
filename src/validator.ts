@@ -18,10 +18,11 @@ fs.readdir(directoryPath, (err, fodlers) => {
           console.log(`validated: ${filePath} is successfully`);
         }
       } catch (err) {
+        isError = true;
         console.log(err);
       }
     });
   });
 
-  if (isError) throw new Error()
+  if (isError) throw new Error();
 });
