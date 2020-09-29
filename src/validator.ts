@@ -5,24 +5,34 @@ import validate from "./schema.validator";
 const directoryPath = path.join(__dirname, "./projects");
 let isError = false;
 
-fs.readdir(directoryPath, (err, fodlers) => {
+fs.readdir(directoryPath, (err, dirs) => {
   if (err) {
     return console.log("Unable to scan directory: " + err);
   }
-  fodlers.forEach((subfolder) => {
-    const filePath = directoryPath + "/" + subfolder + "/info.json";
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) throw err;
-      try {
-        if (validate(JSON.parse(data))) {
-          console.log(`validated: ${filePath} is successfully`);
+  const validatedValues = dirs.map((subDirs) => {
+    const filePath = directoryPath + "/" + subDirs + "/info.json";
+    return new Promise((resolve, reject) => {
+      fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) throw err;
+        try {
+          if (validate(JSON.parse(data))) {
+            resolve(`validated: ${filePath} is successfully`);
+          }
+        } catch (err) {
+          isError = true;
+          resolve(err);
         }
-      } catch (err) {
-        isError = true;
-        console.log(err);
-      }
+      });
     });
   });
-
-  if (isError) throw new Error();
+  Promise.all(validatedValues)
+    .then((values) => {
+      values.map((value) => console.log(value));
+      if (isError) {
+        throw new Error();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
