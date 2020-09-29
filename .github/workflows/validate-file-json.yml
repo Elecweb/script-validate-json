@@ -1,0 +1,10 @@
+name: 'Validate File JSON'
+
+on: pull_request
+
+jobs:
+  validate-file-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/validate-file-json

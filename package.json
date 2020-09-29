@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node src/main.ts",
-    "validate": "ts-node src/main.ts",
+    "validate": "ts-node src/validator.ts",
     "generate:schema-token":"npx typescript-json-validator src/schema.ts InformationTokenSchema",
     "test": "jest"
   },

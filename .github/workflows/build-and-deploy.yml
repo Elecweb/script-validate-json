@@ -12,8 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: NPM install
         run: npm install
-      - name: Validate File JSON
-        run: npm run validate
+      - uses: ./.github/actions/validate-file-json
   deploy-files:
     needs: validate-files
     runs-on: ubuntu-latest

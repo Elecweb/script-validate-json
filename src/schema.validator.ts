@@ -76,6 +76,7 @@ export const InformationTokenSchemaSchema = {
       items: {
         $ref: "#/definitions/BlockchainSchema"
       },
+      minItems: 1,
       type: "array"
     },
     coin_api_asset_id: {
@@ -101,6 +102,7 @@ export const InformationTokenSchemaSchema = {
       items: {
         $ref: "#/definitions/SocialSchema"
       },
+      minItems: 1,
       type: "array"
     },
     source_code: {
