@@ -3,6 +3,7 @@ name: Validate File JSON
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v2
     - name: NPM Install
       run: npm install
       shell: bash

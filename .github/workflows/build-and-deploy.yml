@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: NPM install
-        run: npm install
       - uses: ./.github/actions/validate-file-json
   deploy-files:
     needs: validate-files
