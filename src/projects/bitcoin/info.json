@@ -1,6 +1,6 @@
 {
   "name": "Bitcoin",
-  
+  "symbol": "BTC",
   "token_type": "Store of Value",
   "coingecko_asset_id": "",
   "coin_api_asset_id": "",
