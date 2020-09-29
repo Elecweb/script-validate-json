@@ -1,0 +1,21 @@
+name: Deploy File to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  validate-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate File JSON
+        run: npm run validate
+  deploy-files:
+    needs: validate-files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy File to Server
+        run: echo "Deploy"
