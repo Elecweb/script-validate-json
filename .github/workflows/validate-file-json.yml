@@ -7,4 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/validate-file-json
+      - name: NPM Install
+        run: npm install
+        shell: bash
+      - name: Validate Files
+        run: npm run validate
+        shell: bash

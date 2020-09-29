@@ -4,16 +4,18 @@ on:
   push:
     branches:
       - master
-    paths:
-      - .github/actions/**
-      - .github/workflows/**
 
 jobs:
   validate-files:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/validate-file-json
+      - name: npm Install
+        run: npm install
+        shell: bash
+      - name: Validate Files
+        run: npm run validate
+        shell: bash
   deploy-files:
     needs: validate-files
     runs-on: ubuntu-latest
@@ -21,3 +23,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Deploy File to Server
         run: echo "Deploy"
+        shell: bash
