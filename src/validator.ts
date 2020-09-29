@@ -11,7 +11,7 @@ fs.readdir(directoryPath, (err, dirs) => {
   }
   const validatedValues = dirs.map((subDirs) => {
     const filePath = directoryPath + "/" + subDirs + "/info.json";
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _) => {
       fs.readFile(filePath, "utf8", (err, data) => {
         if (err) throw err;
         try {
@@ -28,11 +28,9 @@ fs.readdir(directoryPath, (err, dirs) => {
   Promise.all(validatedValues)
     .then((values) => {
       values.map((value) => console.log(value));
-      if (isError) {
-        throw new Error();
-      }
+      if (isError) process.exit(1);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err)
     });
 });
