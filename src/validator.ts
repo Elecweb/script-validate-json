@@ -3,6 +3,7 @@ import path from "path";
 import validate from "./schema.validator";
 
 const directoryPath = path.join(__dirname, "./projects");
+let isError = false;
 
 fs.readdir(directoryPath, (err, fodlers) => {
   if (err) {
@@ -21,4 +22,6 @@ fs.readdir(directoryPath, (err, fodlers) => {
       }
     });
   });
+
+  if (isError) throw new Error()
 });
